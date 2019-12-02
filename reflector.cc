@@ -3,7 +3,7 @@
 #include <cstring>
 using namespace std;
 
-char Reflector::swap(char a)
+char Reflector::Swap(char a)
 {
     int q;
     char A[27] = "abcdefghijklmnopqrstuvwxyz" ;

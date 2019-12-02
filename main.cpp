@@ -21,7 +21,8 @@ using namespace std;
 int main()
 {
     //################################################# File handling ##########################################//
-
+     ofstream fout;
+     fout.open("Output.txt");
      ifstream fin;
 	fin.open("enigma.ini");
 	char ch, eny;
@@ -71,34 +72,34 @@ int main()
 
 
 	//	cout<<i<<endl; 			// printing message length
-		cout<<ptr<<endl;		// printing message on console
+		//cout<<ptr<<endl;		// printing message on console
 
 		fin.get(ch);			// getting character e/d
 		eny = ch;
-		cout<<"Ch for encryption is "<<eny<<endl;
+		//cout<<"Ch for encryption is "<<eny<<endl;
 
 		fin.get(ch);			// getting character for next line
 		fin >> R1;				// getting Key1
-		if(R1 >= 26)
+		/*if(R1 >= 26)
 			{
 				throw true;
 			}
 
-		fin.get(ch);
+		fin.get(ch);*/
 		fin >> R2;
-		if(R2 >= 26)
+		/*if(R2 >= 26)
 			{
 				throw 'a';
 			}
 
-		fin.get(ch);
+		fin.get(ch);*/
 		fin >> R3;
-		if(R3 >= 26)
+		/*if(R3 >= 26)
 			{
 				throw 4.00;
 			}
 
-		cout<<R1<<endl<<R2<<endl<<R3<<endl;
+		cout<<R1<<endl<<R2<<endl<<R3<<endl;*/
 	}
 
 	catch (int number )
@@ -106,7 +107,7 @@ int main()
 			cout<<"Number is not allowed in Encryption\n please change the input string\n, .... good byee.\n";
 		}
 
-	catch (bool R1)
+/*	catch (bool R1)
 		{
 			cout<< "Key is greater than 26 for Rotor 1, kindy enter key less than 26 and restart the enigma....\n";
 		}
@@ -119,7 +120,7 @@ int main()
 	catch (float R3 )
 		{
 			cout<< "Key is greater than 26 for Rotor 3, kindy enter key less than 26 and restart the enigma....\n";
-		}
+		}*/
 		//############################################################//
         char p[26]={ 'w','r','y','i','p','k','h','f','s','z','c','b','m','q', 'n','e','v','t','x','u','a','o','d','l','g','j' };
 		Plugboard A;
@@ -128,35 +129,41 @@ int main()
         Rottor D(R2,p);
         Rottor E(R2,p);
         char a;
-        cout << "String is "<<ptr<<endl<<"i is "<<i<<endl;
+       // cout << "String is "<<ptr<<endl<<"i is "<<i<<endl;
         if(eny == 'e')
         {
+            fout<<"EnCrypted Message is "<<endl;
              for(int y=0; y<i; y++)
             {
-                  a = A.swap(ptr[y]);
+                  a = A.Swap(ptr[y]);
                   a = C.Encrypt(a);
                   a = D.Encrypt(a);
                   a = E.Encrypt(a);
-                  a = B.swap(a);
+                  a = B.Swap(a);
+                  fout<<a;
 
-
-                  cout<< "After Encryption "<< a<<endl;
+                  //cout<< "After Encryption "<< a<<endl;
             }
+            fout.close();
         }
         else if(eny == 'd')
         {
+            fout<<"De-Crypted Message is "<<endl;
             C.SetRottor();
+            D.SetRottor();
+            E.SetRottor();
              for(int y=0; y<i; y++)
             {
-                  a = B.swap(ptr[y]);
+                  a = B.Swap(ptr[y]);
                   a = E.DeCrypt(a);
                   a = D.DeCrypt(a);
                   a = C.DeCrypt(a);
-                  a = A.swap(a);
-
-                cout<< "After Dcryption "<< a<<endl;
+                  a = A.Swap(a);
+                  fout<<a;
+                //cout<< "After Dcryption "<< a<<endl;
 
             }
+            fout.close();
         }
 
 

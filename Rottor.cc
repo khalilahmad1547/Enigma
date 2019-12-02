@@ -1,27 +1,33 @@
 Rottor::Rottor()
 {
-    Key=0;
-    TempArray=NULL;
+	Key=0;
+    //cout<<"Enter the Rotor Number "<<endl;
+    char a[26]={ 'w','r','y','i','p','k','h','f','s','z','c','b','m','q', 'n','e','v','t','x','u','a','o','d','l','g','j' };
+    AlphaArray=new char[strlen(a)]; //setting the address of the AlphaArray
+   strcpy(AlphaArray,a);    //copying the data from a to TempArray
+   TempArray=new char[strlen(a)]; //creating a new memory with length same as AlphaArray is
+   strcpy(TempArray,a);     //copying the data from a to TempArray
+   SetRottor(); //calling SetRottor function to set TempArray according to the Key
 }
 Rottor::Rottor(int k,char* a)
 {
-
     Key=k; //setting the Key
-   AlphaArray=a; //setting the address of the AlphaArray
+   AlphaArray=new char[strlen(a)]; //setting the address of the AlphaArray
+   strcpy(AlphaArray,a); //copying the data from a to TempArray
    TempArray=new char[strlen(a)]; //creating a new memory with length same as AlphaArray is
-   strcpy(TempArray,a); //copying the data from AlphaArray to TempArray
+   strcpy(TempArray,a); //copying the data from a to TempArray
    SetRottor(); //calling SetRottor function to set TempArray according to the Key
 }
 void Rottor::Rotate(int time,bool Dir)
 {
-
+    int size=(sizeof(TempArray)/sizeof(TempArray[0]));
    	if(Dir==true) //if true rotate Clock Wise
 	{
 		//rotating clock wise for time 'time'
         for(int i=0;i<time;i++)
             {
                 char temp=TempArray[0];
-                for(int i=0;i<26;i++)
+                for(int i=0;i<size;i++)
                 {
                 TempArray[i]=TempArray[i+1];
                 }
@@ -33,7 +39,7 @@ void Rottor::Rotate(int time,bool Dir)
      for(int i=0;i<time;i++)
         {
             char temp=TempArray[25];
-            for(int i=25;i>=0;i--)
+            for(int i=size;i>=0;i--)
             {
                 TempArray[i]=TempArray[i-1];
             }
@@ -133,4 +139,5 @@ void Rottor::SetRottor()
 Rottor::~Rottor()
 {
 delete[] TempArray;
+delete[] AlphaArray;
 }

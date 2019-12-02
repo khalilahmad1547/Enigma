@@ -12,7 +12,7 @@ public:
     {
 
     }
-    char swap(char a);
+    char Swap(char a);
 };
 
 #endif // REFLECTOR_H_INCLUDED

@@ -9,7 +9,7 @@ public:
 
     }
     ~Plugboard(){}
-    char swap(const char a);
+    char Swap(const char a);
 
 };
 

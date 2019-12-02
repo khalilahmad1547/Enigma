@@ -1,7 +1,7 @@
 
 # include "plugboard.h"
 
-char Plugboard::swap( char z)
+char Plugboard::Swap( char z)
 {
     int x;
     char A[26] = {'a', 'b', 'c', 'n', 'l', 't', 'g', 'r', 'k', 'q', 'f', 'v', 'i', 'z', 'u', 'y', 'h', 'w', 'd', 's', 'o', 'e', 'x', 'm', 'j', 'p' };

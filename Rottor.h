@@ -4,6 +4,7 @@ class Rottor
 {
 private:
     int Key;                  //stores the key
+   // int RottorNo;             //Number of Rotto in Engima
     char* AlphaArray;         //stores the address of alphabets array
     char* TempArray;
 public:
