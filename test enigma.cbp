@@ -32,13 +32,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Engima.h">
-			<Option target="&lt;{~None~}&gt;" />
-		</Unit>
 		<Unit filename="Enigma.cc">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
-		<Unit filename="TestPlugBoard.cc">
+		<Unit filename="Enigma.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
 		<Unit filename="main.cpp" />
