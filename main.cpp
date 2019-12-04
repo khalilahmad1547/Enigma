@@ -77,6 +77,7 @@ namespace Enigmaa
 		 fin.get(ch);
 		 fin >> R3;
 		 cout<<R1<<endl<<R2<<endl<<R3<<endl;
+	         delete[] ptr;
 
     }
 
