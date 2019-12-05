@@ -64,11 +64,11 @@ namespace Enigmaa
                         }
                     }
              }
-         cout<<ptr<<endl;		// printing message on console
+        // cout<<ptr<<endl;		// printing message on console
 
 		 fin.get(ch);			// getting character e/d
 		 eny = ch;
-		 cout<<"Ch for encryption is "<<eny<<endl;
+		// cout<<"Ch for encryption is "<<eny<<endl;
 
 		 fin.get(ch);			// getting character for next line
 		 fin >> R1;				// getting Key1
@@ -76,9 +76,8 @@ namespace Enigmaa
 		 fin >> R2;
 		 fin.get(ch);
 		 fin >> R3;
-		 cout<<R1<<endl<<R2<<endl<<R3<<endl;
-	         delete[] ptr;
-
+		// cout<<R1<<endl<<R2<<endl<<R3<<endl;
+         delete[] ptr;
     }
 
     void cipher()
@@ -90,7 +89,7 @@ namespace Enigmaa
             Rottor D(R2,p);
             Rottor E(R2,p);
             char a;
-            cout << "String is "<<ptr<<endl<<"Message length is "<<i<<endl;
+            cout << "String is "<<ptr<<endl<<"Message length is "<<i<<endl<<endl;
             if(eny == 'e')
             {
                 cout<< "Encrypted message is \" ";
@@ -136,6 +135,9 @@ namespace Enigmaa
                  cout<<"\""<<endl;
             }
     }
+
+    //delete ptr;
+
 }
 
 
