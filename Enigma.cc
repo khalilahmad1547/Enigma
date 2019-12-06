@@ -1,7 +1,6 @@
+#include"Enigma.h"
 Enigma::Enigma()
 {
-// FileName=new char[strlen(FN)];
-    //strcpy(FileName,FN);
     FileName="Default.ini";
     ifstream fin;
 	fin.open(FileName.c_str());
@@ -22,7 +21,7 @@ Enigma::Enigma()
 				}
 			}
 
-		Message = new char [i];		// creating array memory on heap
+		Message = new char [i+1];		// creating array memory on heap
 		fin.seekg(0);					// pointing cusor back to start in text file
 		int b= 0;
 
@@ -48,12 +47,13 @@ Enigma::Enigma()
 			}
 		}
 
-
+cout<<"Message is "<<Message<<endl;
 	//	cout<<i<<endl; 			// printing message length
 	//	cout<<ptr<<endl;		// printing message on console
 
-		fin.get(ch);			// getting character e/d
-		ToDo = ch;
+	//	fin.get(ch);			// getting character e/d
+	//	ToDo = ch;
+	//	cout<<"To do is "<<ToDo<<endl;
 	//	cout<<"Ch for encryption is "<<eny<<endl;
 
 		fin.get(ch);			// getting character for next line
@@ -124,7 +124,7 @@ Enigma::Enigma(string FN)
 					i++;				// counting string length of message
 				}
 			}
-
+cout<<"Message length "<<i<<endl;
 		Message = new char [i];		// creating array memory on heap
 		fin.seekg(0);					// pointing cusor back to start in text file
 		int b= 0;
@@ -150,17 +150,18 @@ Enigma::Enigma(string FN)
 				}
 			}
 		}
-
+cout<<"Data inside the file "<<Message<<endl;
 
 	//	cout<<i<<endl; 			// printing message length
 	//	cout<<ptr<<endl;		// printing message on console
 
-		fin.get(ch);			// getting character e/d
-		ToDo = ch;
+		//fin.get(ch);			// getting character e/d
+	//	ToDo = ch;
 	//	cout<<"Ch for encryption is "<<eny<<endl;
 
 		fin.get(ch);			// getting character for next line
 		fin >>KeyR1;				// getting Key1
+		cout<<"Rotor one key "<<KeyR1<<endl;
 		/*if(R1 >= 26)
 			{
 				throw true;
@@ -168,6 +169,7 @@ Enigma::Enigma(string FN)
 
 		fin.get(ch);
 		fin >> KeyR2;
+		cout<<"Rotor one key "<<KeyR2<<endl;
 		/*if(R2 >= 26)
 			{
 				throw 'a';
@@ -175,6 +177,7 @@ Enigma::Enigma(string FN)
 
 		fin.get(ch);
 		fin >> KeyR3;
+		cout<<"Rotor one key "<<KeyR3<<endl;
 		/*if(R3 >= 26)
 			{
 				throw 4.00;
@@ -208,58 +211,33 @@ Enigma::Enigma(string FN)
 void Enigma::Do()
 {
         char p[26]={ 'w','r','y','i','p','k','h','f','s','z','c','b','m','q', 'n','e','v','t','x','u','a','o','d','l','g','j' };
-		Plugboard PB;
+		Plugboard Pb;
+        Rottor R1(KeyR1,p,1);
+        Rottor R2(KeyR2,p,2);
+        Rottor R3(KeyR3,p,3);
         Reflector Re;
-        Rottor R1(KeyR1,p);
-        Rottor R2(KeyR2,p);
-        Rottor R3(KeyR2,p);
         ofstream FileOut;
         FileOut.open("Output.txt");
-        if(ToDo == 'e')
+        char temp;
+        for(int i=0;i<strlen(Message);i++)
         {
-            char a;
-            FileOut<<"                     En-Crypted Message is               "<<endl;
-             for(int y=0; y<strlen(Message); y++)
-            {
-                if(Message[y]==' ')
-                 {
-                     FileOut<<" ";
-                 }
-                 else
-                 {
-                                       a = PB.Swap(Message[y]);
-                  a = R1.Encrypt(a);
-                  a = R2.Encrypt(a);
-                  a = R3.Encrypt(a);
-                  a = Re.Swap(a);
-                  //cout<<"En "<<a<<endl;
-
-                 FileOut<<a;
-                 }
-
-            }
+        if(Message[i]==' ')
+        {
+        FileOut<<" ";
         }
-        else if(ToDo == 'd')
-        {
-            char a;
-            FileOut<<"                     De-Crypted Message is               "<<endl;
-            for(int y=0; y<strlen(Message); y++)
-            {
-                 if(Message[y]==' ')
-                 {
-                     FileOut<<" ";
-                 }
-                 else {
-                    a = Re.Swap(Message[y]);
-                 a=R3.DeCrypt(a);
-                 a=R2.DeCrypt(a);
-                 a=R1.DeCrypt(a);
-                a = PB.Swap(a);
-                //cout<<"De "<<a<<endl;
-                 FileOut<<a;
-                 }
+        else {
+        temp=Pb.Swap(Message[i]);
+        temp=R1.Encrypt(temp);
+        temp=R2.Encrypt(temp);
+        temp=R3.Encrypt(temp);
+        temp=Re.Swap(temp);
+        temp=R3.Encrypt(temp);
+        temp=R2.Encrypt(temp);
+        temp=R1.Encrypt(temp);
+        temp=Pb.Swap(temp);
+        FileOut<<temp;
+        }
 
-            }
         }
 
         FileOut.close();

@@ -1,5 +1,5 @@
 
-# include "plugboard.h"
+# include "PlugBoard.h"
 
 char Plugboard::Swap( char z)
 {

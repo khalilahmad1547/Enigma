@@ -5,7 +5,6 @@ class Enigma
 private:
 string FileName;
 char *Message;
-char ToDo;
 int KeyR1;
 int KeyR2;
 int KeyR3;

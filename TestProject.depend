@@ -1,0 +1,34 @@
+# depslib dependency file v1.0
+1575639946 source:/home/abdur/Documents/TestProjectFolder/TestProject/main.cpp
+	<iostream>
+	<fstream>
+	<cstring>
+	"PlugBoard.h"
+	"PlugBoard.cc"
+	"Rottor.h"
+	"Rottor.cc"
+	"Reflector.h"
+	"Reflector.cc"
+	"Enigma.h"
+	"Enigma.cc"
+
+1575626184 /home/abdur/Documents/TestProjectFolder/TestProject/Rottor.h
+
+1575626217 /home/abdur/Documents/TestProjectFolder/TestProject/Rottor.cc
+
+1575625549 /home/abdur/Documents/TestProjectFolder/TestProject/Reflector.cc
+	"Reflector.h"
+	<cstring>
+
+1575625201 /home/abdur/Documents/TestProjectFolder/TestProject/Reflector.h
+
+1575626451 /home/abdur/Documents/TestProjectFolder/TestProject/PlugBoard.h
+
+1575626597 /home/abdur/Documents/TestProjectFolder/TestProject/PlugBoard.cc
+	"PlugBoard.h"
+
+1575639615 /home/abdur/Documents/TestProjectFolder/TestProject/Enigma.h
+
+1575639866 /home/abdur/Documents/TestProjectFolder/TestProject/Enigma.cc
+	"Enigma.h"
+
