@@ -1,39 +1,51 @@
 Rottor::Rottor()
 {
-    Key=0;
-    TempArray=NULL;
-}
-Rottor::Rottor(int k,char* a)
-{
-
-    Key=k; //setting the Key
-   AlphaArray=a; //setting the address of the AlphaArray
+	Key=0;
+	TempCount=0;
+	Count=0;
+	cout<<"Enter the Rottor Number "<<endl;
+	cin>>RottorNo;
+    char a[26]={ 'w','r','y','i','p','k','h','f','s','z','c','b','m','q', 'n','e','v','t','x','u','a','o','d','l','g','j' };
+    AlphaArray=new char[strlen(a)]; //setting the address of the AlphaArray
+   strcpy(AlphaArray,a);    //copying the data from a to TempArray
    TempArray=new char[strlen(a)]; //creating a new memory with length same as AlphaArray is
-   strcpy(TempArray,a); //copying the data from AlphaArray to TempArray
+   strcpy(TempArray,a);     //copying the data from a to TempArray
+   SetRottor(); //calling SetRottor function to set TempArray according to the Key
+}
+Rottor::Rottor(int k,char* a,int RNo)
+{
+    RottorNo=RNo;
+    Count=0;
+    TempCount=0;
+    Key=k; //setting the Key
+   AlphaArray=new char[strlen(a)]; //setting the address of the AlphaArray
+   strcpy(AlphaArray,a); //copying the data from a to TempArray
+   TempArray=new char[strlen(a)]; //creating a new memory with length same as AlphaArray is
+   strcpy(TempArray,a); //copying the data from a to TempArray
    SetRottor(); //calling SetRottor function to set TempArray according to the Key
 }
 void Rottor::Rotate(int time,bool Dir)
 {
-
+    int Size=strlen(TempArray);
    	if(Dir==true) //if true rotate Clock Wise
 	{
 		//rotating clock wise for time 'time'
         for(int i=0;i<time;i++)
             {
                 char temp=TempArray[0];
-                for(int i=0;i<26;i++)
+                for(int i=0;i<Size;i++)
                 {
                 TempArray[i]=TempArray[i+1];
                 }
                 TempArray[25]=temp;
             }
     }
-	else if(Dir==false)//rotating Anti-ClockWise
+	 if(Dir==false)//rotating Anti-ClockWise
 	{
      for(int i=0;i<time;i++)
         {
             char temp=TempArray[25];
-            for(int i=25;i>=0;i--)
+            for(int i=Size;i>=0;i--)
             {
                 TempArray[i]=TempArray[i-1];
             }
@@ -44,16 +56,129 @@ void Rottor::Rotate(int time,bool Dir)
 
 char Rottor::Encrypt(char ch)
 {
-    Rotate(1,true); //rotating one time clock wise
-    return GetCharA(GetPositionT(ch));
-}
 
+if(RottorNo==1)// 1st Rottor rotates every time it Encrypt
+{
+
+    if(TempCount==0)//first half cycle of encryption
+    {
+
+        TempCount++;
+    Rotate(1,true); //rotating one time clock wise
+    return GetCharT(GetPositionA(ch));
+    }
+    else if(TempCount==1)
+    {
+    TempCount--;//in secod half cycle we doses not rotate the rottor
+    return GetCharA(GetPositionT(ch));
+    }
+}
+if(RottorNo==2)
+{
+ if(TempCount==0)
+   {
+
+     if(Count==26)
+     {
+     Rotate(1,true);
+     Count=0;
+     }
+        Count++;
+     TempCount++;
+     return GetCharT(GetPositionA(ch));
+   }
+   else if(TempCount==1)
+   {
+     TempCount--;
+     return GetCharA(GetPositionT(ch));
+   }
+
+}
+if(RottorNo==3)
+{
+
+   if(TempCount==0)
+   {
+
+     if(Count==52)
+     {
+     Rotate(1,true);
+     Count=0;
+     }
+     Count++;
+     TempCount++;
+     return GetCharT(GetPositionA(ch));
+   }
+   else if(TempCount==1)
+   {
+     TempCount--;
+     return GetCharA(GetPositionT(ch));
+   }
+}
+}
+/*
 char Rottor::DeCrypt(char ch)
 {
-    Rotate(1,true);//rotating anti clock wise
- return GetCharT(GetPositionA(ch));//decrypting
+if(RottorNo==1)// 1st Rottor rotates every time it Encrypt
+{
+
+    if(TempCount==0)//first half cycle of encryption
+    {
+
+        TempCount++;
+    Rotate(1,false); //rotating one time clock wise
+    return GetCharT(GetPositionA(ch));
+    }
+    else if(TempCount==1)
+    {
+    TempCount--;
+    return GetCharA(GetPositionT(ch));
+    }
+}
+if(RottorNo==2)
+{
+ if(TempCount==0)
+   {
+
+     if(Count==26)
+     {
+     Rotate(1,false);
+     Count=0;
+     }
+        Count++;
+     TempCount++;
+     return GetCharT(GetPositionA(ch));
+   }
+   else if(TempCount==1)
+   {
+     TempCount--;
+     return GetCharA(GetPositionT(ch));
+   }
 
 }
+if(RottorNo==3)
+{
+
+   if(TempCount==0)
+   {
+
+     if(Count==52)
+     {
+     Rotate(1,true);
+     Count=0;
+     }
+     Count++;
+     TempCount++;
+     return GetCharA(GetPositionT(ch));
+   }
+   else if(TempCount==1)
+   {
+     TempCount--;
+     return GetCharT(GetPositionA(ch));
+   }
+}
+*/
+
 int Rottor::GetPositionT(char ch) //getting the present position of char ah in TempArray
 {
     for(int i=0;i<26;i++)
@@ -133,4 +258,5 @@ void Rottor::SetRottor()
 Rottor::~Rottor()
 {
 delete[] TempArray;
+delete[] AlphaArray;
 }
