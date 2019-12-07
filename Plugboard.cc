@@ -4,18 +4,20 @@
 char Plugboard::swap( char z)
 {
     int x;
-    char A[26] = {'a', 'b', 'c', 'n', 'l', 't', 'g', 'r', 'k', 'q', 'f', 'v', 'i', 'z', 'u', 'y', 'h', 'w', 'd', 's', 'o', 'e', 'x', 'm', 'j', 'p' };
+
     for(int i=0; i<26;i++)
     {
-        if(z == A[i])
+        if(z == q[i])
         {
             x =i;
+            break;
         }
     }
+
     x = 25 - x ;
-    return A[x];
+    return q[x];
 
-
+}
     /*
     if (z == 'A' || z == 'a' || z == 'p' || z == 'P')
 	{
@@ -189,4 +191,4 @@ char Plugboard::swap( char z)
 		}
 	}
 	*/
-}
+

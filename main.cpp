@@ -14,12 +14,48 @@ using namespace std;
 
 namespace Enigmaa
 {
-    string word;
-    char ch, eny;
-	int i = 0,  R1, R2, R3;		// some random variable required
-	char *ptr;
-    void file_handling(char * arrq)
+
+    char ch, *ptr ;
+	int i = 0,  R1, R2, R3, plug;		// some random variable required
+	char *q = new char [25];
+
+    void file_handling(char * arrq, char * arrp, int p)
     {
+        if (p == 3)
+        {
+       ifstream finp;
+       finp.open(arrp);
+       if (finp.fail())
+            {
+                cout << "Couldn't find the argument for plugboard setting \n  Running Enigma with default Plugboard Setting ...\n" << endl;
+            }
+          else
+            {
+                cout<<"Plugboard setting invoked"<<endl;
+                    plug = 1;
+                    int g=0;
+                    int t=25;
+                        while(!finp.eof())
+                        {
+                            finp.get(ch);
+                            q[g] =ch;
+                            finp.get(ch);
+                            q[t] = ch;
+                            finp.get(ch);
+                            if(int(ch) != 10)
+                            {
+                                cout<<"Enter in correct pair \n Remember no pair has more two elements\n";
+                                plug = 0;
+                                break;
+                            }
+                            if(g == 13  || t == 13)
+                                break;
+                            g++;
+                            t--;
+                        }
+            }
+          finp.close();
+        }
          ifstream fin;
          fin.open(arrq);
          if (fin.fail())
@@ -67,21 +103,14 @@ namespace Enigmaa
                         }
                     }
              }
-        // cout<<ptr<<endl;		// printing message on console
 
-		// fin.get(ch);			// getting character e/d
-		 //eny = ch;
-		// cout<<"Ch for encryption is "<<eny<<endl;
-
-		// fin.get(ch);			// getting character for next line
-
-		 fin >> R1;
-		try{ if (R1 == 0)
+		  fin >> R1;
+		  try{ if (R1 == 0)
                 {
                         throw 1;
                 }
-            }
-        catch(int a)
+             }
+          catch(int a)
             {
                 cout<<"Enter correct value of Rotor 1"<<endl;
                 cout<<"good bye....";
@@ -93,14 +122,15 @@ namespace Enigmaa
 		 fin >> R2;
 		 fin.get(ch);
 		 fin >> R3;
-		 cout<<R1<<endl<<R2<<endl<<R3<<endl;
+		 cout<<"Rotor 1 key : "<<R1<<endl<<"Rotor 2 key : "<<R2<<endl<<"Rotor 3 key : "<<R3<<endl<<endl;
         // delete[] ptr;
     }
 
-    void cipher()
+    void cipher( )
     {
             char p[26]={ 'w','r','y','i','p','k','h','f','s','z','c','b','m','q', 'n','e','v','t','x','u','a','o','d','l','g','j' };
-            Plugboard A;
+
+            Plugboard A(q, plug);
             Reflector B;
             Rottor C(R1,p, 1);
             Rottor D(R2,p, 2);
@@ -129,7 +159,7 @@ namespace Enigmaa
                          cout<<ptr[y];
                         }
                   }
-               cout<<"\"";
+               cout<<"\""<<endl;
 
     }
 
@@ -140,7 +170,7 @@ namespace Enigmaa
 
 int main(int argc, char ** argv)
 {
-    Enigmaa::file_handling(argv[1]);
+    Enigmaa::file_handling(argv[1], argv[2], argc);
     Enigmaa::cipher();
 
 }
