@@ -1,4 +1,3 @@
-#include <cstdlib>
 #include <iostream>
 using namespace std;
 #include<fstream>
@@ -14,13 +13,13 @@ using namespace std;
 
 namespace Enigmaa
 {
-
-    char ch, *ptr, *q  ,*RR2, *RR1, *RR3, *RF ;
+    char ch, *ptr, *q  ,*RR2, *RR1, *RR3, *RF, eny ;
 	int i = 0,  R1, R2, R3, plug, Ref, Rot1, Rot2, Rot3, g, t;		// some random variable required
-	//char = new char [26];
 
     void file_handling(char * arrq, char * arrp, int p)
     {
+    //               ##############             //
+
                 plug = 0;
                 Ref = 0;
                 Rot1 = 0;
@@ -40,8 +39,8 @@ namespace Enigmaa
                 Rot2 = 0;
                 Rot3 = 0;
             }
-           else
-            {
+            else
+        {
                 cout<<"Enigma setting invoked"<<endl;
                     plug = 1;
                     string word;
@@ -51,6 +50,7 @@ namespace Enigmaa
                         {
                             q = new char [26];
                             finp.get(ch);
+                            finp.get(ch);
                             g=0;
                             t=25;
                                 for(int g=0; g<=13; g++)
@@ -59,6 +59,7 @@ namespace Enigmaa
                                     q[g] =ch;
                                     finp.get(ch);
                                     q[t] = ch;
+                                    finp.get(ch);
                                     finp.get(ch);
                                     if(int(ch) != 10)
                                     {
@@ -71,9 +72,9 @@ namespace Enigmaa
                                         break;
                                     t--;
                                 }
-                                cout<<"Plugboard Array: "<<q<<endl;
+
                         }
-        //################################################################################################################
+                        cout<<"Plugboard Array: "<< q <<endl;
 
 
 
@@ -123,11 +124,12 @@ namespace Enigmaa
                           //  RR3[26] = '\0';
                             cout<<"Rotor3 Array: "<<RR3<<endl;
                         }
-                        //**********************************************************//
-                           finp >> word;
+
+                        finp >> word;
                         if(word == "Reflector:")
                         {
                             RF = new char [26];
+                            finp.get(ch);
                             finp.get(ch);
                             g=0;
                             t=25;
@@ -138,6 +140,7 @@ namespace Enigmaa
                                     RF[g] =ch;
                                     finp.get(ch);
                                     RF[t] = ch;
+                                    finp.get(ch);
                                     finp.get(ch);
                                     if(int(ch) != 10)
                                     {
@@ -152,47 +155,16 @@ namespace Enigmaa
                                 }
                                 cout<<"Reflector Array: "<<RF<<endl;
                         }
-                        //*************************************************************//
 
-/*
-                        finp >> word;
-
-                        if(word == "Reflector:")
-                        {
-                           char *RF = new char [26];
-                           g = 0;
-                           t = 25;
-                           finp.get(ch);
-                           Ref = 1;
-                           for(int g=0; g<=13; g++)
-                           {
-                                finp.get(ch);
-                                RF[g] =ch;
-
-                                finp.get(ch);
-                                RF[t] = ch;
-
-                                finp.get(ch);
-
-                                if(int(ch) != 10)
-                                {
-                                    cout<<"Enter in correct pair \n Remember no pair has more two elements\n";
-                                    Ref = 0;
-                                    break;
-                                    exit(0);
-                                }
-                                if(g == 13  || t == 13)
-                                    break;
-                                t--;
-                            }
-                            cout<<"strlen(RF) = "<<strlen(RF)<<endl;
-                            cout<<"Reflector Array: "<<RF<<endl;
-                        }*/
-        //################################################################################################################
-            }
+                     }
           finp.close();
         }
-         ifstream fin;
+    //*******************************************//
+
+
+
+
+       ifstream fin;
          fin.open(arrq);
          if (fin.fail())
             {
@@ -213,7 +185,7 @@ namespace Enigmaa
                           i++;				// counting string length of message
                   }
              }
-           // i--;
+            i--;
           ptr = new char [i];		// creating array memory on heap
           fin.seekg(0);					// pointing cusor back to start in text file
           int b= 0;
@@ -249,7 +221,7 @@ namespace Enigmaa
                         ptr[y]=ptr[y]+32;
                         }
                   }
-                  cout<<ptr<<endl;
+                //  cout<<ptr<<endl;
              //################################################################################################//
 
 		  fin >> R1;
@@ -300,7 +272,7 @@ namespace Enigmaa
         // delete[] ptr;
     }
 
-    void cipher( )
+  void cipher( )
     {
 
 
@@ -340,7 +312,6 @@ namespace Enigmaa
 //    delete[] *ptr;
 
 }
-
 
 int main(int argc, char ** argv)
 {
