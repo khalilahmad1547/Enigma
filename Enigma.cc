@@ -1,4 +1,3 @@
-#include"Enigma.h"
 Enigma::Enigma()
 {
     FileName="Default.ini";

@@ -97,22 +97,16 @@
 
 1575378072 ated upstream
 
-1575427194 source:c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\main.cpp
+1575974707 source:c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\main.cpp
 	<iostream>
 	<fstream>
 	<cstring>
-	"enigma.h"
-	"Plugboard.cc"
-	"Rotor1.cc"
-	"Rotor2.cc"
-	"Rotor3.cc"
-	"Reflector.cc"
+	"PlugBoard.h"
+	"PlugBoard.cc"
 	"Rottor.h"
 	"Rottor.cc"
-	"plugboard.h"
-	"Plugboard.cc"
 	"Reflector.h"
-	"reflector.cc"
+	"Reflector.cc"
 	"Enigma.h"
 	"Enigma.cc"
 
@@ -133,23 +127,22 @@
 	"Reflector.h"
 	"reflector.cc"
 
-1575387898 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\plugboard.cc
-	"plugboard.h"
+1575974707 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\plugboard.cc
+	"PlugBoard.h"
 
-1575387899 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\plugboard.h
+1575974707 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\plugboard.h
 
-1575387903 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\reflector.cc
+1575974707 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\reflector.cc
 	"Reflector.h"
 	<cstring>
 
-1575387898 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\reflector.h
+1575974707 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\reflector.h
 
-1575387899 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\rottor.h
+1575974707 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\rottor.h
 
-1575387898 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\rottor.cc
+1576037678 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\rottor.cc
 
-1575387898 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\enigma.h
+1575974707 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\enigma.h
 
-1575428644 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\enigma.cc
-	"Enigma.h"
+1576037679 c:\users\khali\downloads\documents\engineering\semester#03\oop's\class\semester project\enigma-\enigma.cc
 

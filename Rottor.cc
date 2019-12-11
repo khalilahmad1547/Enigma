@@ -12,15 +12,16 @@ Rottor::Rottor()
    strcpy(TempArray,a);     //copying the data from a to TempArray
    SetRottor(); //calling SetRottor function to set TempArray according to the Key
 }
-Rottor::Rottor(int k,char* a,int RNo)
+Rottor::Rottor(int k,char* ta,int RNo)
 {
     RottorNo=RNo;
     Count=0;
     TempCount=0;
     Key=k; //setting the Key
+    char a[26]={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
    AlphaArray=new char[strlen(a)]; //setting the address of the AlphaArray
    strcpy(AlphaArray,a); //copying the data from a to TempArray
-   TempArray=new char[strlen(a)]; //creating a new memory with length same as AlphaArray is
+   TempArray=new char[strlen(ta)]; //creating a new memory with length same as AlphaArray is
    strcpy(TempArray,a); //copying the data from a to TempArray
    SetRottor(); //calling SetRottor function to set TempArray according to the Key
 }
