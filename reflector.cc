@@ -5,21 +5,16 @@ using namespace std;
 
 char Reflector::swap(char a)
 {
-    int q;
-    char A[27] = "abcdefghijklmnopqrstuvwxyz" ;
-
+    int r;
     for (int i = 0; i<26; i++)
     {
-       // cout<<A[i]<<endl;
-        if (a == A[i])
+        if (a == q[i])
         {
-            q = i;
-            //cout<<A[i]<<endl;
-            //cout<<i<<endl;
+            r = i;
             break;
         }
     }
 
-    q = 25 - q;
-    return A[q];
+    r = 25 - r;
+    return q[r];
 }

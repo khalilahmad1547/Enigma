@@ -1,4 +1,6 @@
+#include <cstdlib>
 #include <iostream>
+using namespace std;
 #include<fstream>
 #include<cstring>
 #include "Rottor.h"
@@ -8,15 +10,188 @@
 #include "Reflector.h"
 #include "reflector.cc"
 
-using namespace std;
+
 
 namespace Enigmaa
 {
-    char ch, eny;
-	int i = 0,  R1, R2, R3;		// some random variable required
-	char *ptr;
-    void file_handling(char * arrq)
+
+    char ch, *ptr, *q  ,*RR2, *RR1, *RR3, *RF ;
+	int i = 0,  R1, R2, R3, plug, Ref, Rot1, Rot2, Rot3, g, t;		// some random variable required
+	//char = new char [26];
+
+    void file_handling(char * arrq, char * arrp, int p)
     {
+                plug = 0;
+                Ref = 0;
+                Rot1 = 0;
+                Rot2 = 0;
+                Rot3 = 0;
+
+        if (p == 3)
+        {
+           ifstream finp;
+           finp.open(arrp);
+           if (finp.fail())
+            {
+                cout << "Couldn't find the argument for Rottor setting \n  Running Enigma with default Rotor Setting ...\n" << endl;
+                plug = 0;
+                Ref = 0;
+                Rot1 = 0;
+                Rot2 = 0;
+                Rot3 = 0;
+            }
+           else
+            {
+                cout<<"Enigma setting invoked"<<endl;
+                    plug = 1;
+                    string word;
+
+                        finp >> word;
+                        if(word == "Plugboard:")
+                        {
+                            q = new char [26];
+                            finp.get(ch);
+                            g=0;
+                            t=25;
+                                for(int g=0; g<=13; g++)
+                                {
+                                    finp.get(ch);
+                                    q[g] =ch;
+                                    finp.get(ch);
+                                    q[t] = ch;
+                                    finp.get(ch);
+                                    if(int(ch) != 10)
+                                    {
+                                        cout<<"Enter in correct pair \n Remember no pair has more two elements\n";
+                                        plug = 0;
+                                        break;
+                                        exit(0);
+                                    }
+                                    if(g == 13  || t == 13)
+                                        break;
+                                    t--;
+                                }
+                                cout<<"Plugboard Array: "<<q<<endl;
+                        }
+        //################################################################################################################
+
+
+
+                        finp >> word;
+                        if(word == "Rotor1:")
+                        {
+                            Rot1 = 1;
+                            RR1 = new char [26];
+                            finp.get(ch);
+                            for (int i=0; i<26; i++)
+                            {
+                                finp.get(ch);
+                                RR1[i] = ch;
+                            }
+                            //RR1[26] = '\0';
+                            cout<<"Rotor1 Array: "<<RR1<<endl;
+                        }
+
+
+                        finp >> word;
+                        if(word == "Rotor2:")
+                        {
+                            Rot2=1;
+                            RR2 = new char [26];
+                            finp.get(ch);
+                            for (int i=0; i<26; i++)
+                            {
+                                finp.get(ch);
+                                RR2[i] = ch;
+                            }
+                            //RR2[26] = '\0';
+                            cout<<"Rotor2 Array: "<<RR2<<endl;
+                        }
+
+
+                        finp >> word;
+                        if(word == "Rotor3:")
+                        {
+                            Rot3 = 1;
+                            RR3 = new char [26];
+                            finp.get(ch);
+                            for (int i=0; i<27; i++)
+                            {
+                                finp.get(ch);
+                                RR3[i] = ch;
+                            }
+                          //  RR3[26] = '\0';
+                            cout<<"Rotor3 Array: "<<RR3<<endl;
+                        }
+                        //**********************************************************//
+                           finp >> word;
+                        if(word == "Reflector:")
+                        {
+                            RF = new char [26];
+                            finp.get(ch);
+                            g=0;
+                            t=25;
+                            Ref= 1;
+                                for(int g=0; g<=13; g++)
+                                {
+                                    finp.get(ch);
+                                    RF[g] =ch;
+                                    finp.get(ch);
+                                    RF[t] = ch;
+                                    finp.get(ch);
+                                    if(int(ch) != 10)
+                                    {
+                                        cout<<"Enter in correct pair \n Remember no pair has more two elements\n";
+                                        Ref = 0;
+                                        break;
+                                        exit(0);
+                                    }
+                                    if(g == 13  || t == 13)
+                                        break;
+                                    t--;
+                                }
+                                cout<<"Reflector Array: "<<RF<<endl;
+                        }
+                        //*************************************************************//
+
+/*
+                        finp >> word;
+
+                        if(word == "Reflector:")
+                        {
+                           char *RF = new char [26];
+                           g = 0;
+                           t = 25;
+                           finp.get(ch);
+                           Ref = 1;
+                           for(int g=0; g<=13; g++)
+                           {
+                                finp.get(ch);
+                                RF[g] =ch;
+
+                                finp.get(ch);
+                                RF[t] = ch;
+
+                                finp.get(ch);
+
+                                if(int(ch) != 10)
+                                {
+                                    cout<<"Enter in correct pair \n Remember no pair has more two elements\n";
+                                    Ref = 0;
+                                    break;
+                                    exit(0);
+                                }
+                                if(g == 13  || t == 13)
+                                    break;
+                                t--;
+                            }
+                            cout<<"strlen(RF) = "<<strlen(RF)<<endl;
+                            cout<<"Reflector Array: "<<RF<<endl;
+                        }*/
+        //################################################################################################################
+            }
+          finp.close();
+        }
          ifstream fin;
          fin.open(arrq);
          if (fin.fail())
@@ -38,7 +213,7 @@ namespace Enigmaa
                           i++;				// counting string length of message
                   }
              }
-
+           // i--;
           ptr = new char [i];		// creating array memory on heap
           fin.seekg(0);					// pointing cusor back to start in text file
           int b= 0;
@@ -64,34 +239,79 @@ namespace Enigmaa
                         }
                     }
              }
-        // cout<<ptr<<endl;		// printing message on console
 
-		 fin.get(ch);			// getting character e/d
-		 eny = ch;
-		// cout<<"Ch for encryption is "<<eny<<endl;
+             //################################################################################################//
 
-		 fin.get(ch);			// getting character for next line
-		 fin >> R1;				// getting Key1
+               for(int y=0; y<i; y++)
+                  {
+                        if(ptr[y]>=65 && ptr[y]<=92)
+                        {
+                        ptr[y]=ptr[y]+32;
+                        }
+                  }
+                  cout<<ptr<<endl;
+             //################################################################################################//
+
+		  fin >> R1;
+		  try{ if (R1 == 0)
+                {
+                        throw 1;
+                }
+             }
+          catch(int a)
+            {
+                cout<<"Enter correct value of Rotor 1"<<endl;
+                cout<<"good bye....";
+                delete ptr;
+                exit(0);
+            }
+
 		 fin.get(ch);
 		 fin >> R2;
+		  try{ if (R2 == 0)
+                {
+                        throw 1;
+                }
+             }
+          catch(int a)
+            {
+                cout<<"Enter correct value of Rotor 2"<<endl;
+                cout<<"good bye....";
+                delete ptr;
+                //std::abort();
+                exit(0);
+            }
 		 fin.get(ch);
 		 fin >> R3;
-		// cout<<R1<<endl<<R2<<endl<<R3<<endl;
-         delete[] ptr;
+		  try{ if (R1 == 0)
+                {
+                        throw 1;
+                }
+             }
+          catch(int a)
+            {
+                cout<<"Enter correct value of Rotor 3"<<endl;
+                cout<<"good bye....";
+                delete ptr;
+                //std::abort();
+                exit(0);
+            }
+		 cout<<"Rotor 1 key : "<<R1<<endl<<"Rotor 2 key : "<<R2<<endl<<"Rotor 3 key : "<<R3<<endl<<endl;
+        // delete[] ptr;
     }
 
-    void cipher()
+    void cipher( )
     {
-            char p[26]={ 'w','r','y','i','p','k','h','f','s','z','c','b','m','q', 'n','e','v','t','x','u','a','o','d','l','g','j' };
-            Plugboard A;
-            Reflector B;
-            Rottor C(R1,p);
-            Rottor D(R2,p);
-            Rottor E(R2,p);
+
+
+            Plugboard A(q, plug);
+            Reflector B(RF, Ref);
+            Rottor C(R1,RR1, 1, Rot1);
+            Rottor D(R2,RR2, 2, Rot2);
+            Rottor E(R2,RR3, 3, Rot3);
             char a;
             cout << "String is "<<ptr<<endl<<"Message length is "<<i<<endl<<endl;
-            if(eny == 'e')
-            {
+
                 cout<< "Encrypted message is \" ";
                  for(int y=0; y<i; y++)
                   {
@@ -102,6 +322,10 @@ namespace Enigmaa
                           a = D.Encrypt(a);
                           a = E.Encrypt(a);
                           a = B.swap(a);
+                          a = E.Encrypt(a);
+                          a = D.Encrypt(a);
+                         a = C.Encrypt(a);
+                         a = A.swap(a);
                           cout<< a;
                         }
                       else
@@ -109,41 +333,18 @@ namespace Enigmaa
                          cout<<ptr[y];
                         }
                   }
-               cout<<"\"";
-           }
-          else if(eny == 'd')
-           {
-                C.SetRottor();
-                cout<< "Decrypted message is \" ";
-                for(int y=0; y<i; y++)
-                 {
-                    if(ptr[y]>= 'a' && ptr[y] <= 'z' )
-                        {
-                          a = B.swap(ptr[y]);
-                          a = E.DeCrypt(a);
-                          a = D.DeCrypt(a);
-                          a = C.DeCrypt(a);
-                          a = A.swap(a);
-                          cout<< a;
-                         }
-                    else
-                        {
-                            cout<<ptr[y];
-                        }
+               cout<<"\""<<endl;
 
-                  }
-                 cout<<"\""<<endl;
-            }
     }
 
-    //delete ptr;
+//    delete[] *ptr;
 
 }
 
 
 int main(int argc, char ** argv)
 {
-    Enigmaa::file_handling(argv[1]);
+    Enigmaa::file_handling(argv[1], argv[2], argc);
     Enigmaa::cipher();
 
 }
