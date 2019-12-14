@@ -3,15 +3,14 @@
 
 class Reflector
 {
+private:
+    char *q;                        // Attributes
+    int plug;
+
 public:
-    Reflector()
-    {
-
-    }
-    ~Reflector()
-    {
-
-    }
+    Reflector();                    // Behaviour
+    Reflector(char *p, int plug);
+    ~Reflector();
     char swap(char a);
 };
 

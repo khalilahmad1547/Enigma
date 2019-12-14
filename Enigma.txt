@@ -1,0 +1,34 @@
+Plugboard:
+az
+by
+cx
+dw
+ev
+fu
+gt
+hs
+ir
+jq
+kp
+lo
+mn
+
+Rotor1: abcdefghijklmnopqrstuvwxyz
+Rotor2: zyxwvutsrqponmlkjihgfedcba
+Rotor3: zyxwvutsrqponmlkjihgfedcba
+
+Reflector:
+az
+by
+cx
+dw
+ev
+fu
+gt
+hs
+ir
+jq
+kp
+lo
+mn
+

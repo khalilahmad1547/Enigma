@@ -1,12 +1,14 @@
 
-# include "Plugboard.h"
-Plugboard::Plugboard()
-    {
-       // cout<<"Hello Plugboard::Plugboard() called"<<endl;
+#include "Reflector.h"
+#include <cstring>
+using namespace std;
 
-    }
+Reflector::Reflector()
+{
 
-Plugboard::Plugboard(char *p, int plug)
+}
+
+Reflector::Reflector(char *p, int plug)
     {
         char A[26] = {'a', 'b', 'c', 'n', 'l', 't', 'g', 'r', 'k', 'q', 'f', 'v', 'i', 'z', 'u', 'y', 'h', 'w', 'd', 's', 'o', 'e', 'x', 'm', 'j', 'p' };
         q = new char [26];
@@ -22,26 +24,23 @@ Plugboard::Plugboard(char *p, int plug)
          }
     }
 
-Plugboard::~Plugboard()             // Destructor
-    {
-        delete[] q;
-    }
-
-char Plugboard::swap( char z)       // swapping
+char Reflector::swap(char a)
 {
-    int x;
-    for(int i=0; i<26;i++)
+    int r;
+    for (int i = 0; i<26; i++)
     {
-        if(z == q[i])
+        if (a == q[i])
         {
-            x =i;
+            r = i;
             break;
         }
     }
 
-    x = 25 - x ;
-    return q[x];
-
+    r = 25 - r;
+    return q[r];
 }
 
-
+Reflector::~Reflector()
+    {
+        delete[] q;
+    }
