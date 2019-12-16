@@ -9,6 +9,7 @@
 #include "Reflector.h"
 #include "Reflector.cc"
 
+using namespace std;
 Enigma::Enigma()
 {
                                         // constructor
@@ -270,11 +271,13 @@ void Enigma::Cipher()
             Reflector B(RF, Ref);
             Rottor C(R1,RR1, 1, Rot1);
             Rottor D(R2,RR2, 2, Rot2);
-            Rottor E(R2,RR3, 3, Rot3);
+            Rottor E(R3,RR3, 3, Rot3);
             char a;
 
             cout << "String is "<<ptr<<endl<<"Message length is "<<i<<endl<<endl;
             cout<< "Encrypted message is \" ";
+            ofstream fout;
+            fout.open("Output.txt");
 
                  for(int y=0; y<i; y++)
                   {
@@ -290,13 +293,18 @@ void Enigma::Cipher()
                           a = C.Encrypt(a);
                           a = A.swap(a);
                           cout<< a;
+                          fout<<a;
                         }
                       else
                         {
                           cout<<ptr[y];
+                          fout<<ptr[y];
                         }
                   }
                cout<<"\""<<endl;
+               fout<<" "<<endl;
+               fout<<R1<<endl<<R2<<endl<<R3<<endl;
+               fout.close();
 
 }
 
