@@ -27,7 +27,7 @@ Rottor::Rottor(int k,char* ta,int RNo, int FFF)
     if( FFF == 1 )
        {
         TempArray=new char[strlen(ta)];                    //creating a new memory with length same as AlphaArray is
-        strcpy(TempArray,a);                               //copying the data from a to TempArray
+        strcpy(TempArray,ta);                               //copying the data from a to TempArray
        }
    else
        {
